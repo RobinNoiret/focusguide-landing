@@ -28,7 +28,9 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to send email");
+        const errorData = await response.json();
+        console.error("API Error:", errorData);
+        throw new Error(errorData.error || "Failed to send email");
       }
 
       console.log("Email envoyé avec succès à:", email);

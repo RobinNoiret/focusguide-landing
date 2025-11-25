@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { neon } from '@neondatabase/serverless';
 import * as React from 'react';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -18,6 +19,23 @@ export async function POST(req) {
 
     if (!profession) {
       return Response.json({ error: 'Profession is required' }, { status: 400 });
+    }
+
+    // Connect to Neon database
+    const sql = neon(process.env.DATABASE_URL);
+
+    // Insert user data into database before sending email
+    try {
+      await sql`
+        INSERT INTO waitlist (email, first_name, profession)
+        VALUES (${email}, ${firstName}, ${profession})
+        ON CONFLICT (email)
+        DO UPDATE SET first_name = ${firstName}, profession = ${profession}
+      `;
+      console.log('User data saved to database:', { email, firstName, profession });
+    } catch (dbError) {
+      console.error('Database error:', dbError);
+      return Response.json({ error: 'Failed to save user data' }, { status: 500 });
     }
 
 const emailHtml = `
