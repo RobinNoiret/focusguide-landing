@@ -6,10 +6,18 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { email } = body;
+    const { email, firstName, profession } = body;
 
     if (!email) {
       return Response.json({ error: 'Email is required' }, { status: 400 });
+    }
+
+    if (!firstName) {
+      return Response.json({ error: 'First name is required' }, { status: 400 });
+    }
+
+    if (!profession) {
+      return Response.json({ error: 'Profession is required' }, { status: 400 });
     }
 
 const emailHtml = `
@@ -39,7 +47,7 @@ const emailHtml = `
                         <td style="padding: 40px 30px 20px 30px; color: #262626; line-height: 1.6; font-family: 'Inter', Arial, sans-serif;">
                             
                             <h1 style="color: #262626; font-size: 28px; margin-top: 0; margin-bottom: 25px; font-family: 'BNReconGrotesk', 'Inter', Arial, sans-serif; font-weight: 700;">
-                                Bienvenue, {{firstName}} !
+                                Bienvenue, ${firstName} !
                             </h1>
 
                             <p style="margin-bottom: 20px; font-size: 16px;">
