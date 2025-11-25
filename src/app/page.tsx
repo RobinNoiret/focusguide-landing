@@ -84,14 +84,14 @@ export default function Home() {
                   "✓ Inscrit !"
                 ) : (
                   <>
-                    S'inscrire
+                    S&apos;inscrire
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
               </button>
             </div>
             <p className="text-sm text-[var(--black)]/40 mt-3">
-              Soyez informé de la sortie de l'alpha
+              Soyez informé de la sortie de l&apos;alpha
             </p>
           </form>
         </div>
@@ -173,7 +173,7 @@ export default function Home() {
           <div className="flex justify-center">
             <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-[var(--black)]/5 border-2 border-dashed border-[var(--black)]/20">
               <Plus className="w-5 h-5 text-[var(--black)]/40" />
-              <span className="text-[var(--black)]/60 font-medium">Et bien d'autres modules à venir...</span>
+              <span className="text-[var(--black)]/60 font-medium">Et bien d&apos;autres modules à venir...</span>
             </div>
           </div>
         </div>
@@ -185,7 +185,7 @@ export default function Home() {
           <div className="text-center mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--green1)]/20 border border-[var(--green1)]/30 mb-6">
               <Users className="w-4 h-4 text-[var(--black)]" />
-              <span className="text-sm font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>L'équipe</span>
+              <span className="text-sm font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>L&apos;équipe</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tight" style={{ fontFamily: 'Inter, sans-serif' }}>
               Rencontrez les créateurs
@@ -308,7 +308,7 @@ export default function Home() {
               Prêt à reprendre le contrôle ?
             </h2>
             <p className="text-xl font-medium text-[var(--black)]/60" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Inscrivez-vous pour être informé de la sortie de l'alpha
+              Inscrivez-vous pour être informé de la sortie de l&apos;alpha
             </p>
           </div>
 
@@ -332,14 +332,14 @@ export default function Home() {
                   "✓ Inscrit !"
                 ) : (
                   <>
-                    S'inscrire
+                    S&apos;inscrire
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </>
                 )}
               </button>
             </div>
             <p className="text-sm font-medium text-[var(--black)]/40 mt-4 text-center" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Rejoignez la liste d'attente
+              Rejoignez la liste d&apos;attente
             </p>
           </form>
         </div>
