@@ -6,18 +6,25 @@ import { Calendar, Target, CheckSquare, ArrowRight, Sparkles, Timer, Plus, Users
 
 export default function Home() {
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [profession, setProfession] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setShowPopup(true);
+  };
+
+  const handleCompleteSignup = async () => {
     try {
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, firstName, profession }),
       });
 
       if (!response.ok) {
@@ -25,10 +32,13 @@ export default function Home() {
       }
 
       console.log("Email envoyé avec succès à:", email);
+      setShowPopup(false);
       setIsSubmitted(true);
       setTimeout(() => {
         setIsSubmitted(false);
         setEmail("");
+        setFirstName("");
+        setProfession("");
       }, 3000);
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email:", error);
@@ -37,6 +47,93 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[var(--white)] text-[var(--black)]">
+      {/* Popup Modal */}
+      {showPopup && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          onClick={() => setShowPopup(false)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-[var(--black)]/20 backdrop-blur-sm animate-fade-in" />
+
+          {/* Popup Content */}
+          <div
+            className="relative bg-[var(--white)] rounded-3xl border-2 border-[var(--black)]/10 shadow-2xl max-w-md w-full p-8 animate-slide-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold mb-2">Encore une petite chose...</h3>
+              <p className="text-[var(--black)]/60">Pour mieux personnaliser votre expérience</p>
+            </div>
+
+            <div className="space-y-4">
+              {/* Prénom */}
+              <div>
+                <label htmlFor="firstName" className="block text-sm font-medium text-[var(--black)]/70 mb-2">
+                  Prénom
+                </label>
+                <input
+                  id="firstName"
+                  type="text"
+                  placeholder="Votre prénom"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-[var(--white)] border-2 border-[var(--black)]/20 focus:border-[var(--green1)] hover:bg-[var(--green1)]/5 focus:outline-none focus:ring-2 focus:ring-[var(--green1)]/20 transition-all"
+                />
+              </div>
+
+              {/* Profession */}
+              <div>
+                <label htmlFor="profession" className="block text-sm font-medium text-[var(--black)]/70 mb-2">
+                  Vous êtes...
+                </label>
+                <select
+                  id="profession"
+                  value={profession}
+                  onChange={(e) => setProfession(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-[var(--white)] border-2 border-[var(--black)]/20 focus:border-[var(--green1)] hover:bg-[var(--green1)]/5 focus:outline-none focus:ring-2 focus:ring-[var(--green1)]/20 transition-all appearance-none cursor-pointer"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23262626' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 1rem center',
+                    backgroundSize: '12px'
+                  }}
+                >
+                  <option value="" disabled>Sélectionnez votre profil</option>
+                  <option value="student">Étudiant(e)</option>
+                  <option value="freelance">Freelance</option>
+                  <option value="employee">Salarié(e)</option>
+                  <option value="entrepreneur">Entrepreneur</option>
+                  <option value="other">Autre</option>
+                </select>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowPopup(false)}
+                  className="flex-1 px-6 py-3 rounded-xl bg-[var(--black)]/5 text-[var(--black)]/70 font-medium hover:bg-[var(--black)]/10 transition-all"
+                >
+                  Annuler
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCompleteSignup}
+                  disabled={!firstName || !profession}
+                  className="flex-1 px-6 py-3 rounded-xl bg-[var(--green1)] text-[var(--black)] font-semibold hover:bg-[var(--green2)] transition-all border-2 border-[var(--green-border)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  Confirmer
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[var(--white)]/80 backdrop-blur-md border-b border-[var(--black)]/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
