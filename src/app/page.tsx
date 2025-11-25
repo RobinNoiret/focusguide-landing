@@ -11,6 +11,8 @@ export default function Home() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +20,9 @@ export default function Home() {
   };
 
   const handleCompleteSignup = async () => {
+    setIsLoading(true);
+    setError("");
+
     try {
       const response = await fetch("/api/send", {
         method: "POST",
@@ -30,7 +35,7 @@ export default function Home() {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("API Error:", errorData);
-        throw new Error(errorData.error || "Failed to send email");
+        throw new Error(errorData.error || "Échec de l'inscription");
       }
 
       console.log("Email envoyé avec succès à:", email);
@@ -44,6 +49,9 @@ export default function Home() {
       }, 3000);
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email:", error);
+      setError(error instanceof Error ? error.message : "Une erreur s'est produite. Veuillez réessayer.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -112,23 +120,43 @@ export default function Home() {
                 </select>
               </div>
 
+              {/* Message d'erreur */}
+              {error && (
+                <div className="p-4 rounded-xl bg-red-50 border-2 border-red-200">
+                  <p className="text-sm text-red-600 font-medium">{error}</p>
+                </div>
+              )}
+
               {/* Buttons */}
               <div className="flex gap-3 pt-4">
                 <button
                   type="button"
-                  onClick={() => setShowPopup(false)}
-                  className="flex-1 px-6 py-3 rounded-xl bg-[var(--black)]/5 text-[var(--black)]/70 font-medium hover:bg-[var(--black)]/10 transition-all"
+                  onClick={() => {
+                    setShowPopup(false);
+                    setError("");
+                  }}
+                  disabled={isLoading}
+                  className="flex-1 px-6 py-3 rounded-xl bg-[var(--black)]/5 text-[var(--black)]/70 font-medium hover:bg-[var(--black)]/10 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Annuler
                 </button>
                 <button
                   type="button"
                   onClick={handleCompleteSignup}
-                  disabled={!firstName || !profession}
+                  disabled={!firstName || !profession || isLoading}
                   className="flex-1 px-6 py-3 rounded-xl bg-[var(--green1)] text-[var(--black)] font-semibold hover:bg-[var(--green2)] transition-all border-2 border-[var(--green-border)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  Confirmer
-                  <ArrowRight className="w-4 h-4" />
+                  {isLoading ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-[var(--black)]/20 border-t-[var(--black)] rounded-full animate-spin" />
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      Confirmer
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
                 </button>
               </div>
             </div>

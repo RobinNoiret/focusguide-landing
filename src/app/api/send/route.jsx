@@ -45,19 +45,19 @@ const emailHtml = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenue chez FocusGuide !</title>
 </head>
-<body style="font-family: 'Inter', Arial, sans-serif; background-color: #262626; margin: 0; padding: 0;">
+<body style="font-family: 'Inter', Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0;">
 
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #262626; padding: 20px 0;">
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f5f5f5; padding: 40px 0;">
         <tr>
             <td align="center">
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background: #EDEAE9; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
-                    
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="max-width: 600px; background: #EDEAE9; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+
                     <tr>
-                        <td align="center" style="background-color: #262626; padding: 30px 20px;">
-                            <img src="https://focusguide-landing.vercel.app/logo/logo_email.png" 
-                                 alt="FocusGuide Logo" 
-                                 width="200" 
-                                 style="display: block; max-width: 200px; height: auto;">
+                        <td align="center" style="background-color: #262626; padding: 0;">
+                            <img src="https://focusguide-landing.vercel.app/logo_email.png"
+                                 alt="FocusGuide Logo"
+                                 width="600"
+                                 style="display: block; width: 100%; max-width: 600px; height: auto;">
                         </td>
                     </tr>
 
