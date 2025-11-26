@@ -102,9 +102,9 @@ const emailHtml = `
 `;
 
     const { data, error } = await resend.emails.send({
-      from: 'Focus Guide <onboarding@resend.dev>',
+      from: 'FocusGuide <hello@focusguide.fr>',
       to: [email],
-      subject: 'Welcome to FocusGuide!',
+      subject: 'Bienvenue chez FocusGuide !',
       html: emailHtml,
     });
 
