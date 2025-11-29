@@ -451,7 +451,7 @@ export default function Home() {
               Prêt à reprendre le contrôle ?
             </h2>
             <p className="text-xl font-medium text-[var(--black)]/60" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Inscrivez-vous pour être informé de la sortie de l&apos;alpha
+              Inscrivez-vous pour être informés de la sortie de l&apos;alpha
             </p>
           </div>
 

@@ -54,7 +54,7 @@ const emailHtml = `
 
                     <tr>
                         <td align="center" style="background-color: #262626; padding: 0;">
-                            <img src="https://focusguide-landing.vercel.app/logo_email.png"
+                            <img src="https://focusguide.fr/logo_email.png"
                                  alt="FocusGuide Logo"
                                  width="600"
                                  style="display: block; width: 100%; max-width: 600px; height: auto;">

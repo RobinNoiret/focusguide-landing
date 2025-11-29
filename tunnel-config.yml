@@ -1,0 +1,7 @@
+tunnel: 7f49e528-9216-43fc-b0d4-2e80967d23c3
+credentials-file: /home/beta/.cloudflared/7f49e528-9216-43fc-b0d4-2e80967d23c3.json
+
+ingress:
+  - hostname: focusguide.fr
+    service: http://localhost:3001
+  - service: http_status:404
