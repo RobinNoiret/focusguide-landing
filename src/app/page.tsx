@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Calendar, Target, CheckSquare, ArrowRight, Sparkles, Timer, Plus, Users, ChevronDown } from "lucide-react";
 
@@ -498,6 +499,14 @@ export default function Home() {
               width={120}
               height={20}
             />
+          </div>
+          <div className="flex gap-6 text-sm text-[var(--black)]/60">
+            <Link href="/mentions-legales" className="hover:text-[var(--black)] transition-colors">
+              Mentions légales
+            </Link>
+            <Link href="/politique-de-confidentialite" className="hover:text-[var(--black)] transition-colors">
+              Politique de confidentialité
+            </Link>
           </div>
           <p className="text-[var(--black)]/40 text-sm">
             © 2025 FocusGuide. Tous droits réservés.
