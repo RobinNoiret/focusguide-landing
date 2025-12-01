@@ -201,7 +201,7 @@ export default function Home() {
           </div>
 
           <p className="text-xl md:text-2xl text-[var(--black)]/60 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Gérez votre agenda, vos projets et vos tâches dans un seul outil.
+            Gérez vos agendas, vos projets et vos tâches dans un seul outil.
             <br />
             <span className="text-[var(--black)]/80 font-medium">
               Simple. Puissant. Fait pour vous.
@@ -234,7 +234,7 @@ export default function Home() {
               </button>
             </div>
             <p className="text-sm text-[var(--black)]/40 mt-3">
-              Soyez informé de la sortie de l&apos;alpha
+              Soyez informés de la sortie de l&apos;alpha
             </p>
           </form>
         </div>
@@ -279,8 +279,8 @@ export default function Home() {
               },
               {
                 icon: CheckSquare,
-                title: "Tasks",
-                description: "Gérez vos tâches efficacement avec des to-do personnalisables.",
+                title: "Tâches",
+                description: "Gérez vos tâches efficacement avec des to-do lists personnalisables.",
                 color: "blue1",
               },
               {
@@ -402,15 +402,15 @@ export default function Home() {
             {[
               {
                 question: "Quand FocusGuide sera-t-il disponible ?",
-                answer: "Nous travaillons actuellement sur la version alpha de FocusGuide. Inscrivez-vous à notre liste d'attente pour être informé dès le lancement !",
+                answer: "Nous travaillons actuellement sur la version alpha de FocusGuide. Inscrivez-vous à notre liste d'attente pour être informés dès le lancement !",
               },
               {
                 question: "FocusGuide sera-t-il gratuit ?",
-                answer: "Nous prévoyons une version gratuite avec les fonctionnalités essentielles, ainsi qu'une version premium avec des fonctionnalités avancées pour les utilisateurs ayant des besoins plus poussés.",
+                answer: "Nous prévoyons une version gratuite avec les fonctionnalités essentielles, ainsi qu'une version premium avec des fonctionnalités avancées pour les utilisateurs ayant des besoins plus spécifiques.",
               },
               {
                 question: "Sur quelles plateformes FocusGuide sera-t-il disponible ?",
-                answer: "FocusGuide sera disponible en tant qu'application web accessible depuis n'importe quel navigateur. Une application mobile et une extension web sont également prévues pour le futur.",
+                answer: "FocusGuide sera disponible en tant qu'application web accessible depuis n'importe quel navigateur. Une application mobile et une extension web sont également prévues ultérieurement.",
               },
             ].map((faq, index) => (
               <div
