@@ -14,6 +14,7 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +48,7 @@ export default function Home() {
         setEmail("");
         setFirstName("");
         setProfession("");
+        setAcceptedTerms(false);
       }, 3000);
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'email:", error);
@@ -128,6 +130,27 @@ export default function Home() {
                 </div>
               )}
 
+              {/* Checkbox acceptation des conditions */}
+              <div className="flex items-start gap-3 pt-2">
+                <input
+                  type="checkbox"
+                  id="acceptTerms"
+                  checked={acceptedTerms}
+                  onChange={(e) => setAcceptedTerms(e.target.checked)}
+                  className="mt-1 w-4 h-4 rounded border-2 border-[var(--black)]/20 text-[var(--green1)] focus:ring-2 focus:ring-[var(--green1)]/20 cursor-pointer"
+                />
+                <label htmlFor="acceptTerms" className="text-sm text-[var(--black)]/70 cursor-pointer">
+                  J&apos;accepte les{" "}
+                  <Link href="/mentions-legales" target="_blank" className="text-[var(--black)] font-semibold underline decoration-[var(--black)] decoration-2 underline-offset-4 hover:decoration-[var(--green1)] transition-all">
+                    Mentions légales
+                  </Link>
+                  {" "}et la{" "}
+                  <Link href="/politique-de-confidentialite" target="_blank" className="text-[var(--black)] font-semibold underline decoration-[var(--black)] decoration-2 underline-offset-4 hover:decoration-[var(--green1)] transition-all">
+                    Politique de confidentialité
+                  </Link>
+                </label>
+              </div>
+
               {/* Buttons */}
               <div className="flex gap-3 pt-4">
                 <button
@@ -144,7 +167,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={handleCompleteSignup}
-                  disabled={!firstName || !profession || isLoading}
+                  disabled={!firstName || !profession || !acceptedTerms || isLoading}
                   className="flex-1 px-6 py-3 rounded-xl bg-[var(--green1)] text-[var(--black)] font-semibold hover:bg-[var(--green2)] transition-all border-2 border-[var(--green-border)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isLoading ? (
